@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XD-9M App Ui</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: black;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    .login, .main {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
+    .login input {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .login button {
+      padding: 10px 20px;
+      background: #6200ea;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .main.active, .login.active {
+      display: flex;
+    }
+    .status {
+      margin: 10px;
+    }
+    .switches label {
+      display: block;
+      margin: 10px;
+    }
+    .sensibilidad {
+      margin-top: 30px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .modo {
+      margin: 10px 0;
+    }
+    .output {
+      background: #222;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      min-height: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login active" id="login">
+    <h2>XD-9M LOGIN</h2>
+    <input type="text" id="nombre" placeholder="Nombre">
+    <input type="email" id="gmail" placeholder="Correo">
+    <button onclick="iniciarSesion()">Acceder</button>
+  </div>  <div class="main" id="main">
+    <h1>XD-9M</h1>
+    <p>UM SISTEMA PARA AJUDAR OS JOGADORES A ADQUIRIR HABILIDADES E FAZER A DIFERENÇA NO JOGO</p>
+    <p style="color: yellow;">✨ EL MEJOR SOFTWARE DEL MOMENTO.</p><div class="status">
+  Estado: <select id="estado">
+    <option style="color:green;">Online</option>
+    <option style="color:gray;">Offline</option>
+  </select>
+</div>
+
+<div class="switches">
+  <label><input type="checkbox" id="fps"> FPS</label>
+  <label><input type="checkbox" onclick="toggleGeral()"> GERAL</label>
+</div>
+
+<div id="geralMenu" style="display:none; margin-top: 10px;">
+  <button onclick="alert('Calibrando...')">Calibrar dispositivo</button>
+  <button onclick="alert('Toque rápido activado')">Toque rápido</button>
+  <button onclick="alert('Configuraciones ajustadas')">Ajustar configuraciones</button>
+</div>
+
+<div class="sensibilidad">
+  <h3>INTELIGENCIA ARTIFICIAL</h3>
+  <p>Genera Sensibilidad según el modo:</p>
+  <div class="modo">
+    <button onclick="generarSensi('torneio')">Torneio</button>
+    <button onclick="generarSensi('sala')">Sala Personalizada</button>
+    <button onclick="generarSensi('rankeo')">Rankeo</button>
+  </div>
+  <div class="output" id="resultado">Selecciona un modo para generar sensibilidades.</div>
+</div>
+
+  </div>  <script>
+    function iniciarSesion() {
+      const nombre = document.getElementById('nombre').value;
+      const gmail = document.getElementById('gmail').value;
+      if(nombre && gmail) {
+        document.getElementById('login').classList.remove('active');
+        document.getElementById('main').classList.add('active');
+      } else {
+        alert('Debes ingresar nombre y correo.');
+      }
+    }
+
+    function toggleGeral() {
+      const menu = document.getElementById('geralMenu');
+      menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function generarSensi(modo) {
+      let sensibilidades = [];
+      for(let i = 0; i < 5; i++) {
+        sensibilidades.push(Math.floor(Math.random() * 201));
+      }
+      let resultado = `Sensibilidades para ${modo.toUpperCase()}:<br>${sensibilidades.join(' / ')}`;
+      document.getElementById('resultado').innerHTML = resultado;
+    }
+  </script></body>
+</html>
