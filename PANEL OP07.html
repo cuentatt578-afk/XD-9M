@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Free Fire</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: white;
+      background-color: black; /* FONDO NEGRO */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .panel {
+      border: 4px solid red;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.85);
+      width: 300px;
+      animation: borderColor 2s infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes borderColor {
+      0% { border-color: red; }
+      25% { border-color: orange; }
+      50% { border-color: yellow; }
+      75% { border-color: lime; }
+      100% { border-color: cyan; }
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 10px 0;
+      font-weight: bold;
+      border-bottom: 1px solid white;
+    }
+
+    .option {
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .option label {
+      color: lime;
+    }
+
+    .switch {
+      width: 40px;
+      height: 20px;
+      background: gray;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .switch::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      transition: .3s;
+    }
+
+    .switch.active {
+      background: green;
+    }
+
+    .switch.active::before {
+      transform: translateX(20px);
+    }
+
+    .fps-option {
+      margin-left: 20px;
+      display: block;
+      color: white;
+      cursor: pointer;
+    }
+
+    .fps-option input {
+      margin-right: 5px;
+    }
+
+    .bottom-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .bottom-buttons button {
+      padding: 10px;
+      width: 45%;
+      border: none;
+      background: black;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div class="panel">
+    <div class="section-title">OTIMIZAÇÕES ✔</div>
+    <div class="option">
+      <label>ATIVAR OTIMIZAÇÃO</label>
+      <div class="switch" onclick="toggleSwitch(this)"></div>
+    </div>
+    <div class="option">
+      <label>ATIVAR LIMPEZA PROFUNDA</label>
+      <div class="switch" onclick="toggleSwitch(this)"></div>
+    </div>
+
+    <div class="section-title">0 DELAY</div>
+    <div class="option">
+      <label>ATIVAR TELA 0 DELAY </label>
+      <div class="switch" onclick="toggleSwitch(this)"></div>
+    </div>
+    <div class="option">
+      <label>ATIVAR PING 0 DELAY 💣</label>
+      <div class="switch" onclick="toggleSwitch(this)"></div>
+    </div>
+
+    <div class="section-title">FPS BOOSTER 🟩</div>
+    <label class="fps-option"><input type="radio" name="fps" /> 90 FPS</label>
+    <label class="fps-option"><input type="radio" name="fps" /> 120 FPS</label>
+    <label class="fps-option"><input type="radio" name="fps" /> 240 FPS</label>
+
+    <div class="bottom-buttons">
+      <button>FF NORMAL</button>
+      <button>FF MAX</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    function toggleSwitch(element) {
+      element.classList.toggle("active");
+    }
+
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80 },
+        color: { value: "#00ff00" }, // VERDE
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#00ff00", // VERDE
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 3,
+          direction: "none",
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          repulse: { distance: 100 },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+  </script>
+</body>
+</html>
